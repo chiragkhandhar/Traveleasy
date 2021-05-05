@@ -1,6 +1,4 @@
 # TravelEasy
-
-
 ## Installation Steps
 
 **Setup backend**
