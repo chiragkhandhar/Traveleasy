@@ -6,13 +6,18 @@ import "../Styles/Navbar.css";
 
 function Navbar() {
   return (
-    <div className="container">
-      <Link to="/login">
-        <button className="login-btn">Login</button>
+    <div className="container" >
+      <Link to="/" className="site-title">
+        <p  style={{ margin: '0'}}>TravelEasy</p>
       </Link>
-      <Link to="/signup">
-        <button className="signup-btn">Signup</button>
-      </Link>
+      <div>
+        <Link to="/login">
+          <button className="login-btn">Login</button>
+        </Link>
+        <Link to="/signup">
+          <button className="signup-btn">Signup</button>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import axios from "axios";
 import "../Styles/LoginPage.css";
 
 // Components
+import Navbar from "../Components/Navbar";
 import Copyright from "../Components/Copyright";
 
 // MUI Stuff
@@ -16,11 +17,12 @@ import Typography from "@material-ui/core/Typography";
 
 // Icons
 import { FiLock } from "react-icons/fi";
+import { Fragment } from "react";
 
 const styles = {
   paper: {
     display: "flex",
-    height: "100vh",
+    height: "90vh",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -54,7 +56,7 @@ export class LoginPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    
+
     // axios
     //   .post("/api/user/login", this.state)
     //   .then((res) => {
@@ -74,56 +76,59 @@ export class LoginPage extends Component {
     const err = this.state.err;
 
     return (
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <FiLock />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className="form" onSubmit={this.handleSubmit} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            onChange={this.handleChange}
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            onChange={this.handleChange}
-            autoComplete="current-password"
-          />
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-        </form>
-        <div className="footer">
-          <Typography variant="caption">
-            <Link to="/signup"> Need an Account? Sign up here. </Link>
+      <Fragment>
+        <Navbar />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <FiLock />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
           </Typography>
+          <form className="form" onSubmit={this.handleSubmit} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              onChange={this.handleChange}
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              onChange={this.handleChange}
+              autoComplete="current-password"
+            />
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign In
+            </Button>
+          </form>
+          <div className="footer">
+            <Typography variant="caption">
+              <Link to="/signup"> Need an Account? Sign up here. </Link>
+            </Typography>
+          </div>
+          <Copyright />
         </div>
-        <Copyright />
-      </div>
+      </Fragment>
     );
   }
 }

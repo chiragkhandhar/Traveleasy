@@ -3,7 +3,6 @@ import React from "react";
 import "../Styles/Banner.css";
 
 // MUI Stuff
-import Typography from "@material-ui/core/Typography";
 
 function Banner() {
   return (
