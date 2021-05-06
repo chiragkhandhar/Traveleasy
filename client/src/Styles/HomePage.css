@@ -5,6 +5,9 @@
 
 .hp-section-1 {
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 50vw;
   height: 77vh;
   overflow: scroll;
