@@ -1,0 +1,15 @@
+.hp-sections {
+  display: flex;
+  flex-direction: row;
+}
+
+.hp-section-1 {
+  z-index: 1;
+  width: 50vw;
+  height: 77vh;
+  overflow: scroll;
+  box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.12), 3px 1px 12px rgba(0, 0, 0, 0.24);
+}
+.hp-section-2 {
+  width: 50vw;
+}

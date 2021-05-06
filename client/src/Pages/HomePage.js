@@ -4,6 +4,7 @@ import "../Styles/HomePage.css";
 // Components
 import Navbar from "../Components/Navbar";
 import Banner from "../Components/Banner";
+import MapHolder from "../Components/MapHolder";
 
 // MUI Stuff
 
@@ -16,6 +17,12 @@ export class HomePage extends Component {
       <div>
         <Navbar />
         <Banner />
+        <div className="hp-sections">
+          <div className="hp-section-1"></div>
+          <div className="hp-section-2">
+            <MapHolder />
+          </div>
+        </div>
       </div>
     );
   }
