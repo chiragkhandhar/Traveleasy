@@ -1,4 +1,4 @@
-require("dotenv").config({path:"backend/utils/.env"});
+require("dotenv").config({path:"backend/.env"});
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
@@ -6,7 +6,6 @@ const cors = require("cors");
 const uri = process.env.ATLAS_URI
 app.use(cors())
 app.use(express.json())
-console.log(uri);
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
