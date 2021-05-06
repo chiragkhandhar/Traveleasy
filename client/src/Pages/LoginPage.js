@@ -29,14 +29,14 @@ const styles = {
   },
   avatar: {
     marginBottom: "0.5rem",
-    backgroundColor: "#4285F4",
+    backgroundColor: "#333333",
   },
 
   submit: {
     margin: "auto",
     marginTop: "1rem",
     marginBottom: "1rem",
-    backgroundColor: "#4285F4",
+    backgroundColor: "#333333",
   },
 };
 
