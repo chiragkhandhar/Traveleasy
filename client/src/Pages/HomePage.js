@@ -7,6 +7,7 @@ import Navbar from "../Components/Navbar";
 import Banner from "../Components/Banner";
 import Searchbox from "../Components/Searchbox";
 import MapHolder from "../Components/MapHolder";
+import Venue from "../Components/Venue";
 
 // MUI Stuff
 import Chip from "@material-ui/core/Chip";
@@ -81,7 +82,7 @@ export class HomePage extends Component {
   };
 
   render() {
-    const { location } = this.state;
+    const { location, venues } = this.state;
     return (
       <div>
         <Navbar />
@@ -96,6 +97,9 @@ export class HomePage extends Component {
               variant="outlined"
               size="small"
             />
+            <p className="hp-title">Places to check,</p>
+            {venues &&
+              venues.map((venue) => <Venue key={venue.id} venue={venue} />)}
           </div>
           <div className="hp-section-2">
             <MapHolder />

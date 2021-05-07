@@ -16,3 +16,10 @@
 .hp-section-2 {
   width: 50vw;
 }
+
+.hp-title {
+  align-self: flex-start;
+  margin-left: 1rem;
+  font-size: 20px;
+  font-weight: bold;
+}
