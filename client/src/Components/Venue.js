@@ -19,9 +19,13 @@ function Venue(props) {
   const handleSimilar = () => {
     // Call API here
   };
+
+  const handleVenueClick = () => {
+    props.setVenueView(true, venue);
+  };
   return (
     <Fragment>
-      <div className="venue-container">
+      <div className="venue-container" onClick={handleVenueClick}>
         <p className="venue-name">{venue.name}</p>
         <div className="venue-location">
           <HiOutlineLocationMarker />

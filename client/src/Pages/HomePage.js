@@ -7,6 +7,7 @@ import Navbar from "../Components/Navbar";
 import Banner from "../Components/Banner";
 import Searchbox from "../Components/Searchbox";
 import MapHolder from "../Components/MapHolder";
+import OpenVenue from "../Components/OpenVenue";
 import Venue from "../Components/Venue";
 
 // MUI Stuff
@@ -23,6 +24,9 @@ export class HomePage extends Component {
     locationSearchText: "",
     querySearchText: "",
     venues: [],
+
+    openView: false,
+    openVenue: {},
   };
 
   componentDidMount = () => {
@@ -54,6 +58,13 @@ export class HomePage extends Component {
     });
   };
 
+  setVenueView = (flag,venue) => {
+    this.setState({
+      openView: flag,
+      openVenue: venue,
+    });
+  };
+
   api_reverseGeocode = () => {
     const key = "pk.40371e3318703eab896c664d24b12688";
     const uri = `https://us1.locationiq.com/v1/reverse.php?key=${key}&lat=${this.state.lat}&lon=${this.state.lon}&format=json`;
@@ -82,7 +93,7 @@ export class HomePage extends Component {
   };
 
   render() {
-    const { location, venues } = this.state;
+    const { location, venues, openView, openVenue } = this.state;
     return (
       <div>
         <Navbar />
@@ -99,10 +110,23 @@ export class HomePage extends Component {
             />
             <p className="hp-title">Places to check,</p>
             {venues &&
-              venues.map((venue) => <Venue key={venue.id} venue={venue} />)}
+              venues.map((venue) => (
+                <Venue
+                  key={venue.id}
+                  venue={venue}
+                  setVenueView={this.setVenueView}
+                />
+              ))}
           </div>
           <div className="hp-section-2">
-            <MapHolder venues={venues} />
+            {openView ? (
+              <OpenVenue
+                openVenue={openVenue}
+                setVenueView={this.setVenueView}
+              />
+            ) : (
+              <MapHolder venues={venues} />
+            )}
           </div>
         </div>
       </div>
