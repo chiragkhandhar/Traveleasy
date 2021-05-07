@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import "../Styles/SignupPage.css";
 
@@ -58,7 +59,27 @@ export class SignupPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    // Todo: on Submit logic here
+    const body = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword,
+    };
+    axios
+      .post("/api/user/signup", body)
+      .then((res) => {
+        if (res) {
+          alert("User added successfully");
+          this.props.history.push("/login");
+        }
+      })
+      .catch((res) => {
+        this.setState({
+          err: res.data,
+        });
+        alert(res.data);
+      });
   };
   render() {
     const { classes } = this.props;
