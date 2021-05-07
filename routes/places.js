@@ -67,6 +67,18 @@ exports.getPlacesByLatLongCategory= (request, response) => {
 };
 
 
+exports.getVenueDetailsByID = (request,response) => {
+  const VENUE_ID = request.params.id;
+  URL = `https://api.foursquare.com/v2/venues/${VENUE_ID}?client_id=${client_id}&client_secret=${client_secret}&v=20210504`
+  axios.get(URL)
+    .then(res=>{
+      response.status(200).json(res.data);
+    })
+    .catch(err=>{
+      response.status(404).send({"error":"Details of this venue unavailable. Please try again later"+err});
+    })
+}
+
 exports.sayHello = (request, response) => {
   response.status(200).json({"message":"hello world"})
   };
