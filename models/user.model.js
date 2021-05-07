@@ -20,6 +20,9 @@ const userSchema = new Schema({
       password : {
         type: String,
       },
+      browsedcategories:{
+        type:Array
+      }
     }, {
       timestamps: true,
 });
