@@ -19,7 +19,7 @@ function Navbar() {
           <button className="signup-btn">Signup</button>
         </Link>
         <Link to="/profile" className="profile-avatar">
-          <Avatar>H</Avatar>
+          <Avatar>C</Avatar>
         </Link>
       </div>
     </div>

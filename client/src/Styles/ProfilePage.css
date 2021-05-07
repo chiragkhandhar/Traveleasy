@@ -49,6 +49,10 @@
   color: #333333;
 }
 
+.saved-wrapper {
+  margin: 1rem 0 0 2rem;
+}
+
 .saved-places-title {
   display: flex;
   flex-direction: row;

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import { Fragment } from "react";
 
 import "../Styles/ProfilePage.css";
 
 // Components
 import Navbar from "../Components/Navbar";
-import Banner from "../Components/Banner";
-import { Fragment } from "react";
+import SavedVenue from "../Components/SavedVenue";
 
 // Icons
 import { HiOutlineMail, HiOutlineLocationMarker } from "react-icons/hi";
@@ -33,6 +33,12 @@ export class Profile extends Component {
               />
               <p className="saved-places-text">My Saved Places</p>
             </div>
+
+            <div className="saved-wrapper">
+              <SavedVenue />
+              <SavedVenue />
+            </div>
+            
           </div>
         </div>
       </Fragment>
