@@ -13,7 +13,11 @@ import { VscGroupByRefType } from "react-icons/vsc";
 function Venue(props) {
   const venue = props.venue;
   const handleSave = () => {
-      // Call API Here
+    // Call API Here
+  };
+
+  const handleSimilar = () => {
+    // Call API here
   };
   return (
     <Fragment>
@@ -29,9 +33,14 @@ function Venue(props) {
             {venue.categories[0] && venue.categories[0].shortName}
           </p>
         </div>
-        <button className="venu-save" onClick={handleSave}>
-          Save
-        </button>
+        <div className="venue-btns">
+          <button className="venue-save" onClick={handleSave}>
+            Save
+          </button>
+          <button className="venue-similar" onClick={handleSimilar}>
+            View Similar
+          </button>
+        </div>
       </div>
     </Fragment>
   );
