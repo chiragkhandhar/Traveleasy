@@ -16,6 +16,12 @@
  
 }
 
+.end-nav-btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .login-btn {
   cursor: pointer;
   border: none;
@@ -46,4 +52,9 @@
 .signup-btn:hover {
   background-color: #fff;
   color: #000;
+}
+
+.profile-avatar {
+  text-decoration: none;
+  margin-left: 1rem;
 }

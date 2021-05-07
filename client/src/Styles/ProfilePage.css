@@ -1,0 +1,64 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-details-wrapper {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 73vw;
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.12), 0px 0px 2px rgba(0, 0, 0, 0.24);
+  padding: 1rem;
+}
+
+.profile-title {
+  margin: 1rem 0 0 2rem;
+  font-size: 28px;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  color: #333333;
+  border-bottom: 1px solid #d2d2d2;
+}
+.join-date {
+  margin: 3rem 0 0 2rem;
+  font-size: 12px;
+  font-weight: 400;
+  color: #333333;
+  text-transform: uppercase;
+}
+.profile-name {
+  margin: 0.5rem 0 0 2rem;
+  font-size: 36px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.email-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 0 0 2rem;
+}
+
+.email-text {
+  margin-left: 1rem;
+  color: #333333;
+}
+
+.saved-places-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 4rem 0 0 2rem;
+}
+
+.saved-places-text {
+    margin: 0 0 0 0.5rem;
+    font-size: 28px;
+    font-weight: 600;
+    color: #333333;
+}
