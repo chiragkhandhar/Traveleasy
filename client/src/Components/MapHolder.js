@@ -14,7 +14,7 @@ function MapHolder(props) {
     removeMarkers();
 
     venues.forEach((venue) => {
-      let temp = new mapboxgl.Marker()
+      let temp = new mapboxgl.Marker({ color: "#333333" })
         .setLngLat([venue.location.lng, venue.location.lat])
         .setPopup(new mapboxgl.Popup().setHTML(`<h2>${venue.name}</h2>`));
       markers.push(temp);
