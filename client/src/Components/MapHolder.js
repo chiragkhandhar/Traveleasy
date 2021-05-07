@@ -39,8 +39,10 @@ function MapHolder(props) {
       "pk.eyJ1IjoiY2hpcmFna2hhbmRoYXIiLCJhIjoiY2tvY2FiZjlyMGY1ajJvbzJreDhrNGx5aiJ9.Ouakv8PwMWQbljroZP7FCg";
     map = new mapboxgl.Map({
       container: "map-container",
-      center: [venues[0].location.lng, venues[0].location.lat],
-      zoom: 15,
+      center: venues[0]
+        ? [venues[0].location.lng, venues[0].location.lat]
+        : [-98.579, 39.828175],
+      zoom: venues[0] ? 15 : 3,
       style: "mapbox://styles/chiragkhandhar/ckocaj2v11wm517sc77iwo7fm/draft",
     });
     map.addControl(new mapboxgl.NavigationControl());
