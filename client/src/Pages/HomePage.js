@@ -102,7 +102,7 @@ export class HomePage extends Component {
               venues.map((venue) => <Venue key={venue.id} venue={venue} />)}
           </div>
           <div className="hp-section-2">
-            <MapHolder />
+            <MapHolder venues={venues} />
           </div>
         </div>
       </div>
