@@ -1,6 +1,7 @@
 const { response } = require("express");
 const { client_id, client_secret } = require("./api.config");
 const axios = require("axios")
+const User = require("../models/user.model");
 
 exports.getPlacesByLatLong = (request, response) => {
   const ll = request.params.ll;
@@ -69,13 +70,53 @@ exports.getPlacesByLatLongCategory= (request, response) => {
 
 exports.getVenueDetailsByID = (request,response) => {
   const VENUE_ID = request.params.id;
+  const user_id = request.user_id;
   URL = `https://api.foursquare.com/v2/venues/${VENUE_ID}?client_id=${client_id}&client_secret=${client_secret}&v=20210504`
   axios.get(URL)
-    .then(res=>{
-      response.status(200).json(res.data);
-    })
-    .catch(err=>{
-      response.status(404).send({"error":"Details of this venue unavailable. Please try again later"+err});
+    .then((res)=>{
+     const data = res.data;
+     const category = res.data.response.venue.categories[0].shortName;
+     console.log(category);
+     User.findOne({_id:user_id})
+      .then(user=>{
+        const browsedcategories = user.browsedcategories;
+        if(browsedcategories.length===0){
+          console.log(category)
+          browsedcategories.push({"category":category,"count":1})
+          User.updateOne(
+            {_id:user_id},
+            {
+              $set:{
+                browsedcategories:browsedcategories
+            }
+          })
+          .then(res=>{
+            response.status(200).json(data);
+          })
+        }
+        else{
+            let temp = browsedcategories.find(e => e.category === category)
+            if (temp) { 
+              temp.count+= 1
+            }
+            else{
+              browsedcategories.push({"category":category,"count":1})
+            }
+            User.updateOne(
+              {_id:user_id},
+              {
+                $set:{
+                  browsedcategories:browsedcategories
+              }
+            })
+            .then(res=>{
+              response.status(200).json(data);
+            })
+            .catch(err=>{
+              response.status(200).send({"error":"Request Cannot be completed"});
+            })
+        }
+      })
     })
 }
 
