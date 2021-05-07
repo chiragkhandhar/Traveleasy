@@ -16,7 +16,11 @@ function MapHolder(props) {
     venues.forEach((venue) => {
       let temp = new mapboxgl.Marker({ color: "#333333" })
         .setLngLat([venue.location.lng, venue.location.lat])
-        .setPopup(new mapboxgl.Popup().setHTML(`<h2>${venue.name}</h2>`));
+        .setPopup(
+          new mapboxgl.Popup().setHTML(
+            `<h2 style="font-family: 'Quicksand', sans-serif">${venue.name}</h2>`
+          )
+        );
       markers.push(temp);
     });
     addMarkers();
