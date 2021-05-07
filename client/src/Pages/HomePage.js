@@ -58,7 +58,7 @@ export class HomePage extends Component {
     });
   };
 
-  setVenueView = (flag,venue) => {
+  setVenueView = (flag, venue) => {
     this.setState({
       openView: flag,
       openVenue: venue,
@@ -108,7 +108,11 @@ export class HomePage extends Component {
               variant="outlined"
               size="small"
             />
-            <p className="hp-title">Places to check,</p>
+            <div className="hp-title-wrapper">
+              <p className="hp-title">Places to check,</p>
+              <button className="recommed-btn">My Recommendations</button>
+            </div>
+
             {venues &&
               venues.map((venue) => (
                 <Venue

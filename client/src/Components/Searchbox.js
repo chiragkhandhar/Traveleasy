@@ -15,6 +15,7 @@ function Searchbox(props) {
 
   const handleSearch = () => {
     console.log("Calling API...");
+    console.log(state);
     api_LocationQuery();
   };
 
