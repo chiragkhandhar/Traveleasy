@@ -76,3 +76,14 @@ exports.signup = (request, response) => {
           response.status(500).json({ error: "" + err });
         });
   }
+
+  exports.getUserProfile = (request,response) => {
+    const user_id = request.user_id;
+    User.findOne({ _id:user_id})
+      .then(user=>{
+        response.status(200).json(user)
+      })
+      .catch(err=>{
+        response.status(200).send({"message":"This user does not exists"})
+      })
+  }

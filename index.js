@@ -11,7 +11,7 @@ const {
   getSimilarVenueDetailsByID,
   savePlaces
 } = require("./routes/places");
-const { signup, login } = require("./routes/users");
+const { signup, login,getUserProfile } = require("./routes/users");
 
 
 //Connection
@@ -26,6 +26,7 @@ app.post("/api/saveplace/",[verifyToken],savePlaces);
 //Users
 app.post("/api/user/signup", signup);
 app.post("/api/user/login", login);
+app.get("/api/user/profile", [verifyToken],getUserProfile);
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });

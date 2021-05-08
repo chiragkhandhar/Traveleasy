@@ -240,6 +240,7 @@ exports.sayHello = (request, response) => {
 exports.savePlaces = (request,response) => {
   const user_id = request.user_id;
   const place = request.body.place
+
   
   User.findOne({ _id: user_id }).then((user) => {
     console.log(user);
@@ -259,14 +260,20 @@ exports.savePlaces = (request,response) => {
           response.status(400).json({"message":err})
         })
     }
-    else{
+    else if (savedPlaces.length > 0){
       let place_exists = false;
       savedPlaces.forEach(existing_place => {
+        console.log(existing_place.id);
+        console.log(place.id);
+        console.log(existing_place.id===place.id);
+        console.log("==================");
         if(existing_place.id===place.id){
           place_exists = true;
         }
+      });
         if(!place_exists){
           savedPlaces.push(place)
+          console.log("user_id is",user_id);
           User.updateOne( { _id: user_id },
             {
               $set: {
@@ -277,49 +284,12 @@ exports.savePlaces = (request,response) => {
               response.status(200).json({"message":"Place Saved Successfully"})
             })
             .catch(err=>{
-              response.status(400).json({"message":err})
+              response.status(200).json({"message":"error saving place"})
             })
         }
         else{
-          response.status(400).json({"message":"Place Already Exists"})
+          response.status(200).json({"message":"Place Already Exists"})
         }
-      });
     }
-  })
-}
-exports.deletePlace = (request,response) => {
-  const user_id = request.user_id;
-  const id = request.body.id
-  User.findOne({ _id: user_id }).then((user) => {
-    const savedPlaces = user.savedPlaces;
-    if (savedPlaces.length === 0) {
-      savedPlaces.push(place)
-    }
-    else{
-      let place_exists = false;
-      savedPlaces.forEach(existing_place => {
-        if(existing_place.id===place.id){
-          place_exists = true;
-        }
-        if(!place_exists){
-          savedPlaces.push(place)
-          User.updateOne( { _id: user_id },
-            {
-              $set: {
-                savedPlaces: savedPlaces,
-              },
-            })
-            .then(res=>{
-              response.status(200).json({"message":"Place Saved Successfully"})
-            })
-            .catch(err=>{
-              response.status(400).json({"message":err})
-            })
-        }
-        else{
-          response.status(400).json({"message":"Place Already Exists"})
-        }
-      });
-    }
-  })
+  });
 }
