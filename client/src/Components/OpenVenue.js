@@ -32,11 +32,13 @@ function OpenVenue(props) {
         </div>
 
         <div className="details">
-          <img
-            className="ov-img"
-            src="https://source.unsplash.com/random"
-            alt="banner image"
-          />
+          {venue.traveleasy_photo && (
+            <img
+              className="ov-img"
+              src={venue.traveleasy_photo}
+              alt="banner image"
+            />
+          )}
           <div className="ov-name-wrapper">
             <p className="ov-venue-name">{venue.name}</p>
             {venue.verified && (

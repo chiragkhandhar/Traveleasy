@@ -34,6 +34,7 @@ function Venue(props) {
         },
       })
       .then((res) => {
+        console.log(res);
         setVenue(res.data.response.venue);
         props.setVenueView(true, res.data.response.venue);
       })
