@@ -15,11 +15,24 @@ function Venue(props) {
   const token = localStorage.getItem("token");
 
   const handleSave = () => {
+    const id = venue.id;
+    const access_token = `Bearer ${token}`;
     // Call API Here
   };
 
   const handleSimilar = () => {
+    const id = venue.id;
+    const URI = `/api/similar/${id}`;
     // Call API here
+    axios
+      .get(URI)
+      .then((res) => {
+        console.log(res);
+        props.setVenues(res.data.response.venues);    // Verify this line
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const api_getVenueDetails = () => {

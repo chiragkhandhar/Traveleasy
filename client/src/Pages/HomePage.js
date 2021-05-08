@@ -138,6 +138,7 @@ export class HomePage extends Component {
                 <Venue
                   key={venue.id}
                   venue={venue}
+                  setVenues={this.setVenues}
                   setVenueView={this.setVenueView}
                 />
               ))}
