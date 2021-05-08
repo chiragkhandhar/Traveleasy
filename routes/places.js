@@ -253,20 +253,23 @@ exports.savePlaces = (request,response) => {
         }
         if(!place_exists){
           savedPlaces.push(place)
+          User.updateOne( { _id: user_id },
+            {
+              $set: {
+                savedPlaces: savedPlaces,
+              },
+            })
+            .then(res=>{
+              response.status(200).json({"message":"Place Saved Successfully"})
+            })
+            .catch(err=>{
+              response.status(400).json({"message":err})
+            })
+        }
+        else{
+          response.status(400).json({"message":"Place Already Exists"})
         }
       });
     }
-    User.updateOne( { _id: user_id },
-      {
-        $set: {
-          savedPlaces: savedPlaces,
-        },
-      })
-      .then(res=>{
-        response.status(200).json({"message":"Place Saved Successfully"})
-      })
-      .catch(err=>{
-        response.status(400).json({"message":"Place Saved Successfully"})
-      })
   })
 }
