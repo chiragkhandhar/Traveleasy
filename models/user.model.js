@@ -22,6 +22,9 @@ const userSchema = new Schema({
       },
       browsedcategories:{
         type:Array
+      },
+      savedPlaces:{
+        type:Array
       }
     }, {
       timestamps: true,

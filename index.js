@@ -8,7 +8,8 @@ const {
   getPlacesByNameCategory,
   getPlacesByLatLongCategory,
   getVenueDetailsByID,
-  getSimilarVenueDetailsByID
+  getSimilarVenueDetailsByID,
+  savePlaces
 } = require("./routes/places");
 const { signup, login } = require("./routes/users");
 
@@ -21,7 +22,7 @@ app.get("/api/places/:near/:query", getPlacesByNameCategory);
 app.get("/api/venue/:id", [verifyToken], getVenueDetailsByID);
 app.get("/api/venue/similar/:id",getSimilarVenueDetailsByID);
 app.get("/api/recommendations/:ll/",[verifyToken],getPlacesByLatLongCategory);
-
+app.post("/api/saveplace/",[verifyToken],savePlaces);
 //Users
 app.post("/api/user/signup", signup);
 app.post("/api/user/login", login);
