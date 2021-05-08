@@ -70,7 +70,6 @@ export class SignupPage extends Component {
       .post("/api/user/signup", body)
       .then((res) => {
         if (res) {
-          alert("User added successfully");
           this.props.history.push("/login");
         }
       })

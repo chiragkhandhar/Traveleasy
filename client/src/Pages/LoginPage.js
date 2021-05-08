@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import "../Styles/LoginPage.css";
 
@@ -54,21 +55,28 @@ export class LoginPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
+    const body = {
+      email: this.state.email,
+      password: this.state.password,
+    };
 
-    // axios
-    //   .post("/api/user/login", this.state)
-    //   .then((res) => {
-    //     if (res) {
-    //       localStorage.setItem("token", res.data.accessToken);
-    //       this.props.history.push("/dashboard");
-    //     }
-    //   })
-    //   .catch((res) => {
-    //     this.setState({
-    //       err: res.data,
-    //     });
-    //   });
+    axios
+      .post("/api/user/login", body)
+      .then((res) => {
+        if (res.data.message === "Login Successfull") {
+          localStorage.setItem("token", res.data.accessToken);
+          this.props.history.push("/");
+        } else if (res.data.message === "Invalid Password") {
+          localStorage.clear();
+          alert("Invalid Password");
+        }
+      })
+      .catch((res) => {
+        this.setState({
+          err: res.data,
+        });
+        alert(res.data);
+      });
   };
   render() {
     const { classes } = this.props;

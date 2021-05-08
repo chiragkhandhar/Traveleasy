@@ -49,9 +49,9 @@ exports.signup = (request, response) => {
             if(user.password){
               let passwordIsValid = bcrypt.compareSync(verify_password,user.password);
               if(!passwordIsValid){
-                return response.status(401).json({
+                return response.status(200).json({
                   accessToken: null,
-                  password:"Invalid Password"
+                  message:"Invalid Password"
                 })
               }
               else{

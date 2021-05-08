@@ -18,6 +18,9 @@ import { MdMyLocation } from "react-icons/md";
 
 export class HomePage extends Component {
   state = {
+    token: "",
+    isLoggedIn: false,
+
     lat: 0,
     lon: 0,
     location: null,
@@ -31,6 +34,21 @@ export class HomePage extends Component {
 
   componentDidMount = () => {
     this.getGeoLocation();
+
+    if (localStorage.getItem("token")) {
+      this.setState({
+        token: localStorage.getItem("token"),
+        isLoggedIn: true,
+      });
+    }
+  };
+
+  handleLogout = () => {
+    localStorage.clear();
+    this.setState({
+      token: "",
+      isLoggedIn: false,
+    });
   };
 
   handleLocationClick = () => {
@@ -93,10 +111,10 @@ export class HomePage extends Component {
   };
 
   render() {
-    const { location, venues, openView, openVenue } = this.state;
+    const { isLoggedIn, location, venues, openView, openVenue } = this.state;
     return (
       <div>
-        <Navbar />
+        <Navbar isLoggedIn={isLoggedIn} handleLogout={this.handleLogout} />
         <Banner />
         <div className="hp-sections">
           <div className="hp-section-1">
