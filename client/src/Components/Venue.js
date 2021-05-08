@@ -15,9 +15,25 @@ function Venue(props) {
   const token = localStorage.getItem("token");
 
   const handleSave = () => {
-    const id = venue.id;
+    const URI = `/api/saveplace/`;
     const access_token = `Bearer ${token}`;
-    // Call API Here
+    const body = {
+      place: venue,
+    };
+
+    axios
+      .post(URI, body, {
+        headers: {
+          Authorization: access_token,
+        },
+      })
+      .then((res) => {
+        alert(res.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err);
+      });
   };
 
   const handleSimilar = () => {
@@ -28,7 +44,7 @@ function Venue(props) {
       .get(URI)
       .then((res) => {
         console.log(res);
-        props.setVenues(res.data.response.similarVenues.items);    // Verify this line
+        props.setVenues(res.data.response.similarVenues.items); // Verify this line
       })
       .catch((err) => {
         console.log(err);
@@ -62,7 +78,9 @@ function Venue(props) {
   return (
     <Fragment>
       <div className="venue-container">
-        <p className="venue-name" onClick={handleVenueClick}>{venue.name}</p>
+        <p className="venue-name" onClick={handleVenueClick}>
+          {venue.name}
+        </p>
         <div className="venue-location">
           <HiOutlineLocationMarker />
           <p className="venue-address">{`${venue.location.address}, ${venue.location.city}, ${venue.location.postalCode}`}</p>
