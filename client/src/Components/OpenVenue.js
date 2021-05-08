@@ -25,6 +25,7 @@ function OpenVenue(props) {
   const handleCloseClick = () => {
     props.setVenueView(false, {});
   };
+
   return (
     <Fragment>
       <div className="ov-container">

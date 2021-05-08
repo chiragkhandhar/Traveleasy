@@ -1,17 +1,20 @@
 import React, { Component } from "react";
+// Utility
+import { getDates, getData } from "../Utils/utility";
 
 // Chart.js
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
 export class ChartContainer extends Component {
+  state = {
+    dates: [],
+    visitData: [],
+  };
   chartRef = React.createRef();
 
   componentDidMount() {
-    let currentDate = new Date();
-    const dates = this.getDates(currentDate);
-    const data = this.getData();
-    this.generateChart(dates, data);
+    this.generateChart(getDates(new Date()), getData());
   }
 
   generateChart = (dates, visitData) => {
@@ -30,7 +33,8 @@ export class ChartContainer extends Component {
         },
       ],
     };
-    var myChart = new Chart(ctx, {
+
+    new Chart(ctx, {
       type: "line",
       data: data,
       options: {
@@ -41,45 +45,6 @@ export class ChartContainer extends Component {
         },
       },
     });
-  };
-
-  getDates = (currentDate) => {
-    let dates = [];
-
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-
-    currentDate.setDate(currentDate.getDate() - 7);
-
-    for (let i = 0; i < 7; i++) {
-      dates[i] = `${currentDate.getFullYear()}-${
-        months[currentDate.getMonth()]
-      }-${currentDate.getDate()}`;
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-    return dates;
-  };
-
-  getData = () => {
-    let data = [];
-
-    let limit = Math.floor(Math.random() * 1000);
-
-    for (let i = 0; i < 7; i++) data.push(Math.floor(Math.random() * limit));
-
-    return data;
   };
 
   render() {
