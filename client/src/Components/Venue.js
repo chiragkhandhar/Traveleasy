@@ -22,7 +22,7 @@ function Venue(props) {
 
   const handleSimilar = () => {
     const id = venue.id;
-    const URI = `/api/similar/${id}`;
+    const URI = `/api/venue/similar/${id}`;
     // Call API here
     axios
       .get(URI)

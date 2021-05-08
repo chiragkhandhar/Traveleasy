@@ -83,6 +83,10 @@ export class HomePage extends Component {
     });
   };
 
+  handleRecommendations = () => {
+    this.api_getRecommendations();
+  };
+
   api_reverseGeocode = () => {
     const key = "pk.40371e3318703eab896c664d24b12688";
     const uri = `https://us1.locationiq.com/v1/reverse.php?key=${key}&lat=${this.state.lat}&lon=${this.state.lon}&format=json`;
@@ -110,6 +114,24 @@ export class HomePage extends Component {
       });
   };
 
+  api_getRecommendations = () => {
+    const access_token = `Bearer ${this.state.token}`;
+    const URI = `/api/recommendations`;
+    axios
+      .get(URI, {
+        headers: {
+          Authorization: access_token,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        this.setVenues(res.data.response.venues); // Verify this line
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     const { isLoggedIn, location, venues, openView, openVenue } = this.state;
     return (
@@ -129,7 +151,12 @@ export class HomePage extends Component {
             <div className="hp-title-wrapper">
               <p className="hp-title">Places to check,</p>
               {isLoggedIn && (
-                <button className="recommed-btn">My Recommendations</button>
+                <button
+                  className="recommed-btn"
+                  onClick={this.handleRecommendations}
+                >
+                  My Recommendations
+                </button>
               )}
             </div>
 
