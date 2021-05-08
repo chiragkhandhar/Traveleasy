@@ -15,7 +15,21 @@
 .details {
   margin: 1rem 0 0 2rem;
 }
+
+.ov-name-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
 .ov-venue-name {
   font-size: 36px;
   font-weight: 500;
+}
+
+.ov-description {
+  margin-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid #b1b1b1;
+  border-bottom: 1px solid #b1b1b1;
 }

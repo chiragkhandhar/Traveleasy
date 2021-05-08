@@ -1,6 +1,7 @@
 import React from "react";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import "../Styles/Venue.css";
+import axios from "axios";
 
 // MUI Stuff
 import Chip from "@material-ui/core/Chip";
@@ -9,9 +10,10 @@ import Chip from "@material-ui/core/Chip";
 
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { VscGroupByRefType } from "react-icons/vsc";
+import { STATES } from "mongoose";
 
 function Venue(props) {
-  const venue = props.venue;
+  const [venue, setVenue] = useState(props.venue);
   const handleSave = () => {
     // Call API Here
   };
@@ -20,8 +22,29 @@ function Venue(props) {
     // Call API here
   };
 
+  const api_getVenueDetails = () => {
+    const id = venue.id;
+    const token = localStorage.getItem("token");
+    const access_token = `Bearer ${token}`;
+    const URI = `/api/venue/${id}`;
+
+    axios
+      .get(URI, {
+        headers: {
+          Authorization: access_token,
+        },
+      })
+      .then((res) => {
+        setVenue(res.data.response.venue);
+        props.setVenueView(true, res.data.response.venue);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleVenueClick = () => {
-    props.setVenueView(true, venue);
+    api_getVenueDetails();
   };
   return (
     <Fragment>
