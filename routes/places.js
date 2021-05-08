@@ -2,6 +2,7 @@ const { response } = require("express");
 const { client_id, client_secret } = require("./api.config");
 const axios = require("axios");
 const User = require("../models/user.model");
+const { query } = require("express");
 
 exports.getPlacesByLatLong = (request, response) => {
   const ll = request.params.ll;
@@ -50,12 +51,58 @@ exports.getPlacesByNameCategory = (request, response) => {
     });
 };
 
+function getMax(arr, prop) {
+  var max;
+  for (var i=0 ; i<arr.length ; i++) {
+      if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
+          max = arr[i];
+  }
+  return max;
+}
+
 exports.getPlacesByLatLongCategory = (request, response) => {
   const ll = request.params.ll;
-  const query = request.params.query;
-  console.log(near, query);
-  URL = `https://api.foursquare.com/v2/venues/search?ll=${ll}&query=${query}&client_id=${client_id}&client_secret=${client_secret}&v=20210504`;
-  axios
+  let query = '';
+  const user_id = request.user_id;
+  console.log(user_id)
+  URL = `https://api.foursquare.com/v2/venues/search?near=${ll}&categoryId=4d4b7105d754a06374d81259&query=${query}&limit=50&client_id=${client_id}&client_secret=${client_secret}&v=20210504`;
+  User.findOne({_id:user_id})
+  .then(user=>{
+    if(user.browsedcategories.length>0){
+      const browsedcategories = user.browsedcategories;
+      if(browsedcategories.length==1){
+        query = browsedcategories[0].category;
+        axios
+        .get(URL)
+        .then((res) => {
+          console.log(res.data);
+          response.status(200).send(res.data);
+        })
+        .catch((err) => {
+          response
+            .status(400)
+            .send({ error: "Cannot Fetch Places for this location" + err });
+        });
+      }
+      else{
+        let maxPpg = getMax(browsedcategories, "count");
+        console.log(maxPpg);
+        query = maxPpg.category;
+        axios
+        .get(URL)
+        .then((res) => {
+          console.log(res.data);
+          response.status(200).send(res.data);
+        })
+        .catch((err) => {
+          response
+            .status(400)
+            .send({ error: "Cannot Fetch Places for this location" + err });
+        });
+      }
+    }
+    else{
+      axios
     .get(URL)
     .then((res) => {
       response.status(200).send(res.data);
@@ -65,6 +112,8 @@ exports.getPlacesByLatLongCategory = (request, response) => {
         .status(400)
         .send({ error: "Cannot Fetch Places for this location" + err });
     });
+    }
+  })
 };
 
 exports.getVenueDetailsByID = (request, response) => {

@@ -116,7 +116,7 @@ export class HomePage extends Component {
 
   api_getRecommendations = () => {
     const access_token = `Bearer ${this.state.token}`;
-    const URI = `/api/recommendations`;
+    const URI = `/api/recommendations/${this.state.location.address.city}`;
     axios
       .get(URI, {
         headers: {

@@ -18,9 +18,9 @@ app.get("/", sayHello);
 app.get("/api/places/:ll", getPlacesByLatLong);
 app.get("/api/places/:near", getPlacesByLocationName);
 app.get("/api/places/:near/:query", getPlacesByNameCategory);
-app.get("/api/places/:ll/:query", getPlacesByLatLongCategory);
 app.get("/api/venue/:id", [verifyToken], getVenueDetailsByID);
 app.get("/api/venue/similar/:id",getSimilarVenueDetailsByID);
+app.get("/api/recommendations/:ll/",[verifyToken],getPlacesByLatLongCategory);
 
 //Users
 app.post("/api/user/signup", signup);
