@@ -1,4 +1,5 @@
-# TravelEasy
+<img width="1166" alt="image" src="https://user-images.githubusercontent.com/37962354/117533446-7c564480-afb2-11eb-81e9-cc7b96a9d699.png">
+
 ## Installation Steps
 
 **Setup backend**
