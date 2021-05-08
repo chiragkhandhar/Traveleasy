@@ -9,7 +9,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { HiOutlineUserCircle } from "react-icons/hi";
 
 function Navbar(props) {
-  const isLoggedIn = props.isLoggedIn;
+  const isLoggedIn = localStorage.getItem("token");
 
   const handleLogout = () => {
     props.handleLogout();
