@@ -28,7 +28,7 @@ function Venue(props) {
       .get(URI)
       .then((res) => {
         console.log(res);
-        props.setVenues(res.data.response.venues);    // Verify this line
+        props.setVenues(res.data.response.similarVenues.items);    // Verify this line
       })
       .catch((err) => {
         console.log(err);
@@ -61,8 +61,8 @@ function Venue(props) {
   };
   return (
     <Fragment>
-      <div className="venue-container" onClick={handleVenueClick}>
-        <p className="venue-name">{venue.name}</p>
+      <div className="venue-container">
+        <p className="venue-name" onClick={handleVenueClick}>{venue.name}</p>
         <div className="venue-location">
           <HiOutlineLocationMarker />
           <p className="venue-address">{`${venue.location.address}, ${venue.location.city}, ${venue.location.postalCode}`}</p>
