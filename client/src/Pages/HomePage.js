@@ -140,14 +140,21 @@ export class HomePage extends Component {
         <Banner />
         <div className="hp-sections">
           <div className="hp-section-1">
-            <Searchbox setVenues={this.setVenues} />
             <Chip
               icon={<MdMyLocation />}
               label={location !== null ? location.address.city : "Locate me"}
               onClick={this.getGeoLocation}
               variant="outlined"
               size="small"
+              style={{ marginTop: "1rem" }}
             />
+
+            <Searchbox
+              setVenues={this.setVenues}
+              lat={this.state.lat}
+              lon={this.state.lon}
+            />
+
             <div className="hp-title-wrapper">
               <p className="hp-title">Places to check,</p>
               {isLoggedIn && (
