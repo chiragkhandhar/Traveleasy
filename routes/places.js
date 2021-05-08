@@ -293,3 +293,35 @@ exports.savePlaces = (request,response) => {
     }
   });
 }
+
+
+exports.deletePlace = (request,response) =>{
+  const user_id = request.user_id;
+  const object_id = request.body.id;
+  console.log(object_id);
+  User.findOne({_id:user_id})
+    .then(user=>{
+      console.log(user);
+      if(user.savedPlaces.length>0){
+        const savedPlaces = user.savedPlaces
+        let index = savedPlaces.findIndex(element => element.id==object_id);
+        console.log("index is ", index);
+        savedPlaces.splice(index, 1);
+        console.log((savedPlaces));
+        User.updateOne(
+          {_id:user_id},
+          {
+            $set:{
+              savedPlaces:savedPlaces
+            }
+          }
+          )
+          .then(res=>{
+            response.status(200).json({"message":"Successfully deleted a place from your list"})
+          })
+          .catch(err=>{
+            response.status(200).json({"error":"Error Deleting a Place"})
+          })
+      }
+    })
+  }

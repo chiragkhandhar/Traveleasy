@@ -5,13 +5,25 @@ import "../Styles/SavedVenue.css";
 
 // Icons
 import { VscGroupByRefType } from "react-icons/vsc";
+import axios from "axios";
 
 function SavedVenue(props) {
   const place = props.place;
-
+  const token = localStorage.getItem('token');
   const handleRemove = () => {
     const place_id = place.id;
-    //API Call here; On Success call props.api_getUserProfile
+    const URI = '/api/deleteplace/'
+    axios.post(URI,place_id,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    })
+    .then(res=>{
+     props.api_getUserProfile();
+    })
+    .catch(err=>{
+     alert(err);
+    })
   };
   return (
     <Fragment>

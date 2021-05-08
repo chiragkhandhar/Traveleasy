@@ -9,7 +9,8 @@ const {
   getPlacesByLatLongCategory,
   getVenueDetailsByID,
   getSimilarVenueDetailsByID,
-  savePlaces
+  savePlaces,
+  deletePlace
 } = require("./routes/places");
 const { signup, login,getUserProfile } = require("./routes/users");
 
@@ -23,6 +24,7 @@ app.get("/api/venue/:id", [verifyToken], getVenueDetailsByID);
 app.get("/api/venue/similar/:id",getSimilarVenueDetailsByID);
 app.get("/api/recommendations/:ll/",[verifyToken],getPlacesByLatLongCategory);
 app.post("/api/saveplace/",[verifyToken],savePlaces);
+app.post("/api/deleteplace/",[verifyToken],deletePlace);
 //Users
 app.post("/api/user/signup", signup);
 app.post("/api/user/login", login);
