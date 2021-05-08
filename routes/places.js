@@ -19,6 +19,25 @@ exports.getPlacesByLatLong = (request, response) => {
     });
 };
 
+exports.getPlacesByNearMe = (request, response) => {
+  const ll = request.params.ll;
+  const query = request.params.query;
+  
+  const URI = `https://api.foursquare.com/v2/venues/search?near=${ll}&query=${query}&limit=50&client_id=${client_id}&client_secret=${client_secret}&v=20210504`;
+
+  axios
+  .get(URI)
+  .then((res) => {
+    response.status(200).send(res.data);
+  })
+  .catch((err) => {
+    response
+      .status(400)
+      .send({ error: "Cannot Fetch Places for this location" + err });
+  });
+
+}
+
 exports.getPlacesByLocationName = (request, response) => {
   const near = request.params.near;
   URL = `https://api.foursquare.com/v2/venues/search?near=${near}&client_id=${client_id}&client_secret=${client_secret}&v=20210504`;

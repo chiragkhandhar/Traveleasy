@@ -11,8 +11,6 @@ import { MdSwapVerticalCircle } from "react-icons/md";
 
 function Searchbox(props) {
   const [state, setstate] = useState({
-    lat: props.lat,
-    lon: props.lon,
 
     searchText: "",
     queryText: "",
@@ -26,7 +24,7 @@ function Searchbox(props) {
 
   const handleSearch = () => {
     console.log("Calling API...");
-    console.log(state);
+    console.log(state, props.lat, props.lon);
     state.nearmeOn ? api_NearmeSearch() : api_LocationQuery();
   };
 
@@ -51,7 +49,7 @@ function Searchbox(props) {
   };
 
   const api_NearmeSearch = () => {
-    const URI = `/api/places/${state.lat},${state.lon}/${state.queryText}`;
+    const URI = `/api/places/${props.lat},${props.lon}/${state.queryText}`;
     axios
       .get(URI)
       .then((res) => {

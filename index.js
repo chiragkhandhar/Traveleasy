@@ -3,6 +3,7 @@ const apiConfig = require("./routes/api.config");
 const { verifyToken } = require("./middleware/authJWT");
 const {
   getPlacesByLatLong,
+  getPlacesByNearMe,
   sayHello,
   getPlacesByLocationName,
   getPlacesByNameCategory,
@@ -18,6 +19,7 @@ const { signup, login,getUserProfile } = require("./routes/users");
 //Connection
 app.get("/", sayHello);
 app.get("/api/places/:ll", getPlacesByLatLong);
+app.get("/api/places/:ll/:query", getPlacesByNearMe);
 app.get("/api/places/:near", getPlacesByLocationName);
 app.get("/api/places/:near/:query", getPlacesByNameCategory);
 app.get("/api/venue/:id", [verifyToken], getVenueDetailsByID);
