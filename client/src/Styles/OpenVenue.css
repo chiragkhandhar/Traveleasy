@@ -1,7 +1,9 @@
 .ov-container {
   display: flex;
   flex-direction: column;
-  /* border: 1px dotted red; */
+  border: 1px dotted red;
+  height: 77vh;
+  overflow: scroll;
 }
 
 .close-btn {
@@ -39,4 +41,11 @@
   height: 240px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.chart-holder {
+  margin-top: 1rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  height: 240px;
 }

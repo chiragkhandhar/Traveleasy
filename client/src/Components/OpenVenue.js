@@ -1,6 +1,9 @@
-import React from "react";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
+
 import "../Styles/OpenVenue.css";
+
+// Components
+import ChartContainer from "../Components/ChartContainer";
 
 // MUI Stuff
 import IconButton from "@material-ui/core/IconButton";
@@ -96,6 +99,10 @@ function OpenVenue(props) {
               </a>
             </div>
           )}
+
+          <div className="chart-holder">
+            <ChartContainer />
+          </div>
         </div>
       </div>
     </Fragment>
