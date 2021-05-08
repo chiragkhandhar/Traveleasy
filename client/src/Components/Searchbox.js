@@ -7,7 +7,7 @@ import "../Styles/Searchbox.css";
 import Chip from "@material-ui/core/Chip";
 
 // Icons
-import { MdSwapVerticalCircle } from "react-icons/md";
+import { FaSearch } from "react-icons/fa";
 
 function Searchbox(props) {
   const [state, setstate] = useState({
@@ -23,8 +23,6 @@ function Searchbox(props) {
   };
 
   const handleSearch = () => {
-    console.log("Calling API...");
-    console.log(state, props.lat, props.lon);
     state.nearmeOn ? api_NearmeSearch() : api_LocationQuery();
   };
 
@@ -98,7 +96,7 @@ function Searchbox(props) {
         </div>
       )}
       <Chip
-        icon={<MdSwapVerticalCircle />}
+        icon={<FaSearch />}
         variant="outlined"
         label={state.nearmeOn ? "Search for Location" : "Search Near me"}
         onClick={handleSearchToggle}

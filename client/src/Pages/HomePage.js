@@ -184,7 +184,11 @@ export class HomePage extends Component {
                 setVenueView={this.setVenueView}
               />
             ) : (
-              <MapHolder venues={venues} />
+              <MapHolder
+                venues={venues}
+                lat={this.state.lat}
+                lon={this.state.lon}
+              />
             )}
           </div>
         </div>

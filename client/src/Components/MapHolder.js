@@ -10,6 +10,7 @@ function MapHolder(props) {
 
   useEffect(() => {
     loadMap();
+    addUserLocationMarker();
 
     removeMarkers();
 
@@ -25,6 +26,17 @@ function MapHolder(props) {
     });
     addMarkers();
   }, [markers]);
+
+  const addUserLocationMarker = () => {
+    let user_marker = new mapboxgl.Marker({ color: "#FF395C" })
+      .setLngLat([props.lon, props.lat])
+      .setPopup(
+        new mapboxgl.Popup().setHTML(
+          `<h2 style="font-family: 'Quicksand', sans-serif">It's me</h2>`
+        )
+      );
+    user_marker.addTo(map);
+  };
 
   const addMarkers = () => {
     markers.forEach((marker) => {
