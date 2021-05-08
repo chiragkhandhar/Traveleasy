@@ -240,15 +240,29 @@ exports.sayHello = (request, response) => {
 exports.savePlaces = (request,response) => {
   const user_id = request.user_id;
   const place = request.body.place
+  
   User.findOne({ _id: user_id }).then((user) => {
+    console.log(user);
     const savedPlaces = user.savedPlaces;
     if (savedPlaces.length === 0) {
       savedPlaces.push(place)
+      User.updateOne( { _id: user_id },
+        {
+          $set: {
+            savedPlaces: savedPlaces,
+          },
+        })
+        .then(res=>{
+          response.status(200).json({"message":"Place Saved Successfully"})
+        })
+        .catch(err=>{
+          response.status(400).json({"message":err})
+        })
     }
     else{
       let place_exists = false;
       savedPlaces.forEach(existing_place => {
-        if(existing_place.id.trim()===place.id.trim()){
+        if(existing_place.id===place.id){
           place_exists = true;
         }
         if(!place_exists){
