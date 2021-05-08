@@ -32,6 +32,11 @@ function OpenVenue(props) {
         </div>
 
         <div className="details">
+          <img
+            className="ov-img"
+            src="https://source.unsplash.com/random"
+            alt="banner image"
+          />
           <div className="ov-name-wrapper">
             <p className="ov-venue-name">{venue.name}</p>
             {venue.verified && (
@@ -43,7 +48,7 @@ function OpenVenue(props) {
             <p className="ov-description">{venue.description}</p>
           )}
 
-          {venue.defaultHours.status && (
+          {venue.defaultHours && (
             <div className="venue-category">
               <HiStatusOnline />
               <p className="venue-categoryname">{venue.defaultHours.status}</p>
