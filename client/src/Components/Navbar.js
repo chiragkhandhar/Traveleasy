@@ -5,6 +5,9 @@ import "../Styles/Navbar.css";
 // MUI Stuff
 import Avatar from "@material-ui/core/Avatar";
 
+// Icons
+import { HiOutlineUserCircle } from "react-icons/hi";
+
 function Navbar(props) {
   const isLoggedIn = props.isLoggedIn;
 
@@ -34,7 +37,9 @@ function Navbar(props) {
         )}
         {isLoggedIn && (
           <Link to="/profile" className="profile-avatar">
-            <Avatar>C</Avatar>
+            <Avatar style={{ color: "#333333" }}>
+              <HiOutlineUserCircle />
+            </Avatar>
           </Link>
         )}
       </div>
