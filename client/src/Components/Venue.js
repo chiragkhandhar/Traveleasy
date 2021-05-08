@@ -4,16 +4,16 @@ import "../Styles/Venue.css";
 import axios from "axios";
 
 // MUI Stuff
-import Chip from "@material-ui/core/Chip";
 
 // Icons
 
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { VscGroupByRefType } from "react-icons/vsc";
-import { STATES } from "mongoose";
 
 function Venue(props) {
   const [venue, setVenue] = useState(props.venue);
+  const token = localStorage.getItem("token");
+
   const handleSave = () => {
     // Call API Here
   };
@@ -24,7 +24,6 @@ function Venue(props) {
 
   const api_getVenueDetails = () => {
     const id = venue.id;
-    const token = localStorage.getItem("token");
     const access_token = `Bearer ${token}`;
     const URI = `/api/venue/${id}`;
 
@@ -61,9 +60,11 @@ function Venue(props) {
           </p>
         </div>
         <div className="venue-btns">
-          <button className="venue-save" onClick={handleSave}>
-            Save
-          </button>
+          {token && (
+            <button className="venue-save" onClick={handleSave}>
+              Save
+            </button>
+          )}
           <button className="venue-similar" onClick={handleSimilar}>
             View Similar
           </button>

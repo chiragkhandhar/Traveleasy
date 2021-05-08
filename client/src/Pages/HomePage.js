@@ -128,7 +128,9 @@ export class HomePage extends Component {
             />
             <div className="hp-title-wrapper">
               <p className="hp-title">Places to check,</p>
-              <button className="recommed-btn">My Recommendations</button>
+              {isLoggedIn && (
+                <button className="recommed-btn">My Recommendations</button>
+              )}
             </div>
 
             {venues &&

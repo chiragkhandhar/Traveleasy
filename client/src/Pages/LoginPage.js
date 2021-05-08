@@ -80,7 +80,6 @@ export class LoginPage extends Component {
   };
   render() {
     const { classes } = this.props;
-    const err = this.state.err;
 
     return (
       <Fragment>

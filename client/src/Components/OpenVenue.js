@@ -1,5 +1,5 @@
 import React from "react";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import "../Styles/OpenVenue.css";
 
 // MUI Stuff
