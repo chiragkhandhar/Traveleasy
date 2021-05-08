@@ -77,6 +77,9 @@ exports.getVenueDetailsByID = (request,response) => {
      const data = res.data;
      const category = res.data.response.venue.categories[0].shortName;
      console.log(category);
+     if(!request.user_id){
+      response.status(200).json(data)
+    }
      User.findOne({_id:user_id})
       .then(user=>{
         const browsedcategories = user.browsedcategories;
